@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PointofsaleController!{% endblock %}
+
+{% block body %}
+    <h1>{{ pluralize(pointofsales| length, 'Point de vente')}}</h1>
+
+    {% for pointofsale in pointofsales %}
+        <h2>{{ pointofsale.name }}</h2>
+        <p>{{ pointofsale.name }}</p>
+    {% endfor %}
+{% endblock %}
