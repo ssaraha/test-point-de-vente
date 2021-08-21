@@ -14,6 +14,13 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav>
+            <ul>
+                <li><a href="{{ path('app_pointofsale_index') }}">Home</a></li>
+                <li><a href="{{ path('app_pointofsale_create') }}">Nouveau point de vente</a></li>
+            </ul>
+        </nav>
+        {% block body %}   
+        {% endblock %}
     </body>
 </html>

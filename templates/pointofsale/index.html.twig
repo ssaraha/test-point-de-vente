@@ -1,12 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PointofsaleController!{% endblock %}
+{% block title 'Listes des points de vente' %}
 
 {% block body %}
     <h1>{{ pluralize(pointofsales| length, 'Point de vente')}}</h1>
 
     {% for pointofsale in pointofsales %}
-        <h2>{{ pointofsale.name }}</h2>
+        <h2><a href="{{ path('app_pointofsale_show', {'id': pointofsale.id}) }}">{{ pointofsale.name }}</a></h2>
         <p>{{ pointofsale.name }}</p>
+        <form id="js-delete-form" action="{{ path('app_pointofsale_delete', {'id': pointofsale.id}) }}" method="post" style="display:none">
+            
+            <input type="hidden" name="csrf_token" value="{{ csrf_token('pos_deletion_' ~ pointofsale.id)}}" />
+        </form>
+        <a href="#" onclick="confirm('Etes vous sur de supprimer?') && event.preventDefault(); document.querySelector('#js-delete-form').submit();">Supprimer</a>
     {% endfor %}
 {% endblock %}
