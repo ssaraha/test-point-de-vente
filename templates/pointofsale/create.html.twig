@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-	{{ form_start(form) }}
-		{{ form_widget(form) }}
-		<input type="submit" value="Enregistrer" />
-	{{ form_end(form) }}
+	<h2>Nouveau Point de vente</h2>
+	{{ include('pointofsale/_form.html.twig')}}
 {% endblock %}

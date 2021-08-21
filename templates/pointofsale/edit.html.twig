@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	{{form_start(form)}}
-		{{ form_widget(form) }}
-		<input type="submit" value="Modifier" />
-	{{form_end(form)}}
+	<h2>Modifier Point de vente</h2>
+	{{ include('pointofsale/_form.html.twig', {'submitButtonText': 'Modifier'}) }}
 {% endblock %}
