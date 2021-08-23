@@ -15,7 +15,7 @@ class PointOfSaleType extends AbstractType
             ->add('name')
             ->add('place')
             ->add('picture')
-            //->add('createdAt')
+            ->add('detail')
         ;
     }
 
