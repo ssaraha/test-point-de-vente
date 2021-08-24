@@ -42,6 +42,8 @@ class PointofsaleController extends AbstractController
             $em->persist($point_of_sale);
             $em->flush();
 
+            $this->addFlash('success', 'Point de vente bien créé');
+
             return $this->redirectToRoute('app_pointofsale_index');   
         }
 
@@ -62,6 +64,7 @@ class PointofsaleController extends AbstractController
         if ( $form->isSubmitted() && $form->isValid() ) {
             $em->flush();
 
+            $this->addFlash('success', 'Point de vente bien modifié');
             return $this->redirectToRoute('app_pointofsale_index');
         }
 
