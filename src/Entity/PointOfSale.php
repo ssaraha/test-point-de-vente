@@ -6,6 +6,8 @@ use App\Repository\PointOfSaleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=PointOfSaleRepository::class)
  * 
@@ -23,11 +25,16 @@ class PointOfSale
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(min=3, minMessage="Le nom doit être au plus de 3 caractères ")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $place;
 
@@ -61,7 +68,7 @@ class PointOfSale
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -73,7 +80,7 @@ class PointOfSale
         return $this->place;
     }
 
-    public function setPlace(string $place): self
+    public function setPlace(?string $place): self
     {
         $this->place = $place;
 
