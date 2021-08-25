@@ -6,7 +6,16 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import './styles/app.scss';
 
+// app.js
+
+//const $ = require('jquery');
+// this "modifies" the jquery module: adding behavior to it
+// the bootstrap module doesn't export/return anything
+//require('bootstrap');
+
+import $ from 'jquery';
 // start the Stimulus application
-import './bootstrap';
+import 'bootstrap';
+
