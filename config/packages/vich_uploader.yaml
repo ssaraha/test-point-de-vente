@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        pos_images:
+            uri_prefix: /uploads/pointofsale
+            upload_destination: '%kernel.project_dir%/public/uploads/pointofsale'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
