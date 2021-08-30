@@ -18,11 +18,11 @@ class PointOfSaleType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'delete_label' => '...',
-                'download_label' => '...',
-                'download_uri' => true,
-                'image_uri' => true,
-               // 'imagine_pattern' => '...',
-                'asset_helper' => true,
+                //'download_label' => '...',
+                'download_uri' => false,
+                //'image_uri' => true,
+                'imagine_pattern' => 'squared_thumbnail_small'
+                //'asset_helper' => true,
             ])
             ->add('name')
             ->add('place')
