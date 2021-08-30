@@ -52,7 +52,7 @@ class PointOfSale
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="pos_images", fileNameProperty="picture")
-     * 
+     * @Assert\Image(maxSize="8M", maxSizeMessage="La taille de votre image a dépassé le maximum autorisé")
      * @var File|null
      */
     private $imageFile;
