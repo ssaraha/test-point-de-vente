@@ -62,6 +62,7 @@ class PointofsaleController extends AbstractController
 
         $form->handleRequest($request);
         if ( $form->isSubmitted() && $form->isValid() ) {
+            //dd($form->getData());
             $em->flush();
 
             $this->addFlash('success', 'Point de vente bien modifié');
