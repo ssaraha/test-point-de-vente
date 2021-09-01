@@ -130,6 +130,7 @@ class PointOfSale
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->setUpdatedAt(new \DateTime());
+            //dd($this->getUpdatedAt());
         }
     }
 

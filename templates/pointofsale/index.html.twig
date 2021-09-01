@@ -3,18 +3,34 @@
 {% block title 'Listes des points de vente' %}
 
 {% block body %}
-    <h1>{{ pluralize(pointofsales| length, 'Point de vente')}}</h1>
 
-    {% for pointofsale in pointofsales %}
-        <h2><a href="{{ path('app_pointofsale_show', {'id': pointofsale.id}) }}">{{ pointofsale.name }}</a></h2>
-        <p>{{ pointofsale.place }}</p>
-        <p>{{ pointofsale.detail|u.truncate(10, ' ...', false) }}</p>
-        <p>créée le <strong>{{ pointofsale.createdAt|ago }} </strong></p>
-        <form id="js-delete-form" action="{{ path('app_pointofsale_delete', {'id': pointofsale.id}) }}" method="post" style="display:none">
-            
-            <input type="hidden" name="csrf_token" value="{{ csrf_token('pos_deletion_' ~ pointofsale.id)}}" />
-        </form>
-        <a href="{{ path('app_pointofsale_edit', {'id': pointofsale.id}) }}">Editer</a>
-        <a href="#" onclick="confirm('Etes vous sur de supprimer?') && event.preventDefault(); document.querySelector('#js-delete-form').submit();">Supprimer</a>
-    {% endfor %}
+    {% if pointofsales|length > 0 %}
+        <h1 class="text-muted text-center">{{ pluralize(pointofsales| length, 'Point de vente')}}</h1>
+        {% for row in pointofsales|batch(3) %}
+            <div class="row mb-5">
+                {% for pointofsale in row %}
+                    <div class="col-md-4">
+                        <article class="pos bg-white rounded shadow">
+                            <h5 class="text-center h5 pt-3 pb-3" ><a href="{{ path('app_pointofsale_show', {'id': pointofsale.id}) }}" class="text-secondary text-decoration-none">{{ pointofsale.name }}</a></h2>
+                            <div class="mw-100 overflow-hidden">
+                                <img class="w-100 rounded" src="{{ (pointofsale.picture ? vich_uploader_asset(pointofsale) : asset('build/images/image.png')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pointofsale.picture }}">
+                            </div>                        
+                            <p class="mt-3 ml-3">{{ pointofsale.place }}</p>
+                            {#<p class="ml-3" >{{ pointofsale.detail|u.truncate(10, ' ...', false) }}</p>#}
+                            <p class="ml-3">créée le <strong>{{ pointofsale.createdAt|ago }} </strong></p>
+                            <form id="js-delete-form" action="{{ path('app_pointofsale_delete', {'id': pointofsale.id}) }}" method="post" style="display:none">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token('pos_deletion_' ~ pointofsale.id)}}" />
+                            </form>
+                            <div class="p-3">
+                                <a class="btn btn-primary" href="{{ path('app_pointofsale_edit', {'id': pointofsale.id}) }}">Editer</a>
+                                <a class="btn btn-danger" href="#" onclick="confirm('Etes vous sur de supprimer?') && event.preventDefault(); document.querySelector('#js-delete-form').submit();">Supprimer</a>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="mt-5 text-muted text-center">Il n' y a pas de Point de vente didponible pour le moment <a href="{{ asset('app_pointofsale_create') }}">Crée le premier</a></p>    
+    {% endif %}
 {% endblock %}
